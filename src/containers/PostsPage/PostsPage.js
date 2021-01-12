@@ -65,9 +65,10 @@ const mapStateToProps = state => {
 
     const commentEntityRefs = comments =>
         comments.map(id => ({ type: COMMENT_ENTITY_TYPE, id }));
+    const uniqueComments = comments => comments.filter((v, i, a) => a.indexOf(v) === i);
     const postsWithComments = posts.map(p => ({
         ...p,
-        comments: p.comments ? getEntities(state, commentEntityRefs(p.comments)) : []
+        comments: p.comments ? uniqueComments(getEntities(state, commentEntityRefs(p.comments))) : []
     }));
 
     return {

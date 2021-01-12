@@ -1,0 +1,17 @@
+.root {
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.name {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.body {
+    margin: 0;
+    padding: 0;
+    color: gray;
+}
