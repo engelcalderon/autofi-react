@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCommentForm matches snapshot 1`] = `
+<form
+  className="root"
+  onSubmit={[Function]}
+>
+  <h2>
+    Add a comment
+  </h2>
+  <div
+    className="container"
+  >
+    <input
+      className="field"
+      name="name"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Name"
+      value=""
+    />
+    <input
+      className="field"
+      name="email"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Email"
+      type="email"
+      value=""
+    />
+    <textarea
+      className="field"
+      name="body"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Type a comment..."
+      rows={2}
+      value=""
+    />
+  </div>
+  <button
+    className="submit"
+  >
+    Send
+  </button>
+</form>
+`;

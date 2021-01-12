@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostCard matches snapshot 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="postImage"
+  />
+  <div
+    className="body"
+  >
+    <h3
+      className="title"
+    >
+      sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+    </h3>
+    <div
+      className="body"
+    >
+      quia et suscipit
+suscipit recusandae consequuntur expedita et cum
+reprehenderit molestiae ut ut quas totam
+nostrum rerum est autem sunt rem eveniet architecto
+    </div>
+  </div>
+  <div
+    className="commentsContainer"
+  >
+    <span
+      className="commentsLabel"
+      onClick={[Function]}
+    >
+      2 comments
+    </span>
+  </div>
+</div>
+`;

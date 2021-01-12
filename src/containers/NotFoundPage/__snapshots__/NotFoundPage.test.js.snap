@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage matches snapshot 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="number"
+    >
+      404
+    </div>
+    <h1
+      className="heading"
+    >
+      Sorry, we couldn't find that page.
+    </h1>
+    <p
+      className="description"
+    >
+      We can't find the page you're looking for. Make sure you've typed in the URL correctly.
+    </p>
+  </div>
+</div>
+`;
