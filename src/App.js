@@ -2,8 +2,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Routes from './Routes';
 import store from './store';
+import axios from 'axios';
 
-const configStore = store();
+const setupAxios = () => {
+  axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
+};
+
+setupAxios();
+const configStore = store({}, axios);
 
 function App() {
 
