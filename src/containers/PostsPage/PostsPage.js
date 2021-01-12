@@ -2,9 +2,8 @@ import React from 'react';
 import { array, object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { fetchPosts } from '../../ducks/posts.duck';
-import { fetchComments, addComment, COMMENT_ENTITY_TYPE } from '../../ducks/comments.duck';
 import { getEntities } from '../../ducks/entities.duck';
+import { fetchPosts, fetchComments, addComment, COMMENT_ENTITY_TYPE } from './PostsPage.duck';
 import { PostCard } from '../../components';
 
 import css from './PostsPage.module.css';
@@ -62,7 +61,7 @@ const mapStateToProps = state => {
         postRefs,
         fetchPostsInProgress,
         fetchPostsError
-    } = state.posts;
+    } = state.PostsPage;
 
     const posts = getEntities(state, postRefs);
 
