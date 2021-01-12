@@ -1,3 +1,9 @@
+/**
+ * This is used along with the PostCard component. Represents each individual comment and 
+ * its only function it's to render the information.
+ * 
+ */
+
 import React from 'react';
 import { string } from 'prop-types';
 

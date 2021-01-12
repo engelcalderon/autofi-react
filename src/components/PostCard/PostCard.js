@@ -1,5 +1,12 @@
+/**
+ * PostsCard renders the information about a specific post like the title and body of it.
+ * It also handles the action of sending data for a new comment and clearing the fields
+ * of the form.
+ * 
+ */
+
 import React, { useState } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { CommentCard } from '../../components';
 import { AddCommentForm } from '../../forms';
 
@@ -64,6 +71,7 @@ PostCard.defaultProps = {
 
 PostCard.propTypes = {
     post: object.isRequired,
+    onAddComment: func.isRequired
 }
 
 export default PostCard;
