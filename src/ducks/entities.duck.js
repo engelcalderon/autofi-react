@@ -1,3 +1,6 @@
+import mapKeys from 'lodash/mapKeys';
+import merge from 'lodash/merge';
+
 export const ADD_ENTITIES = 'app/entities/ADD_ENTITIES';
 
 const initialState = {
@@ -5,13 +8,23 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action = {}) {
-    const { type } = action;
+    const { type, payload } = action;
     switch (type) {
         case ADD_ENTITIES:
             return {
-                ...state
+                ...state,
+                entities: merge(state.entities, payload)
             };
         default:
             return state
     }
-}
+};
+
+export const addEntities = (type, data) => (dispatch, getState) => {
+    dispatch({
+        type: ADD_ENTITIES,
+        payload: {
+            [type]: { ...mapKeys(data, 'id') }
+        }
+    });
+};
