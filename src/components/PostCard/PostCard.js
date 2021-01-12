@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { object } from 'prop-types';
 import { CommentCard } from '../../components';
+import { AddCommentForm } from '../../forms';
 
 import css from './PostCard.module.css';
 
@@ -8,10 +9,21 @@ const PostCard = props => {
 
     const [showComments, setShowComments] = useState(false);
 
-    const { post } = props;
+    const { post, onAddComment } = props;
     const { title, body, comments = [] } = post;
 
     const numberOfComments = `${comments.length} comments`;
+
+    const handleOnSubmitComment = (values, form) => {
+        onAddComment({
+            postId: post.id,
+            ...values
+        }).then(() => {
+            form.change('name', '');
+            form.change('email', '');
+            form.change('body', '');
+        });
+    };
 
     return (
         <div className={css.root}>
@@ -31,6 +43,10 @@ const PostCard = props => {
 
                 {showComments ? (
                     <React.Fragment>
+                        <AddCommentForm
+                            className={css.addCommentForm}
+                            onSubmit={handleOnSubmitComment}
+                        />
                         {comments.map(comment => (
                             <CommentCard key={comment.id} {...comment} />
                         ))}

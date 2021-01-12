@@ -1,9 +1,9 @@
 import React from 'react';
-import { array, object, bool } from 'prop-types';
+import { array, object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { fetchPosts } from '../../ducks/posts.duck';
-import { fetchComments, COMMENT_ENTITY_TYPE } from '../../ducks/comments.duck';
+import { fetchComments, addComment, COMMENT_ENTITY_TYPE } from '../../ducks/comments.duck';
 import { getEntities } from '../../ducks/entities.duck';
 import { PostCard } from '../../components';
 
@@ -21,6 +21,7 @@ export class PostsPageComponent extends React.Component {
             posts,
             fetchPostsInProgress,
             fetchPostsError,
+            onAddComment
         } = this.props;
 
         if (fetchPostsInProgress) return <span>Loading...</span>
@@ -34,6 +35,7 @@ export class PostsPageComponent extends React.Component {
                         <PostCard
                             key={post.id}
                             post={post}
+                            onAddComment={onAddComment}
                         />
                     ))}
                 </div>
@@ -52,6 +54,7 @@ PostsPageComponent.propTypes = {
     posts: array,
     fetchPostsInProgress: bool.isRequired,
     fetchPostsError: object,
+    onAddComment: func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -81,6 +84,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     onFetchPosts: () => dispatch(fetchPosts()),
     onFetchComments: () => dispatch(fetchComments()),
+    onAddComment: (values) => dispatch(addComment(values))
 })
 
 const PostsPage = compose(

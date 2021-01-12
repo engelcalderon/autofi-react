@@ -50,3 +50,14 @@ export const fetchComments = () => (dispatch, getState, axios) => {
             return data;
         }).catch(err => dispatch({ type: FETCH_COMMENTS_ERROR, payload: { e: err } }))
 };
+
+export const addComment = values => (dispatch, getState) => {
+    const { entities } = getState().entities;
+    const nextId = Object.keys(entities[COMMENT_ENTITY_TYPE]).length + 1;
+    const comment = { id: nextId, ...values };
+    return Promise.resolve()
+        .then(() => {
+            dispatch(addEntities(COMMENT_ENTITY_TYPE, [comment]));
+            dispatch(addEntitiesRelationships(POST_ENTITY_TYPE, 'postId', COMMENT_POST_ENTITY_REL_NAME, [comment]));
+        });
+};
