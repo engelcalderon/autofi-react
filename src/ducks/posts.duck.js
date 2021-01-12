@@ -1,11 +1,10 @@
-import axios from 'axios';
 import { addEntities } from './entities.duck';
 
 export const POST_ENTITY_TYPE = 'post';
 
-export const FETCH_POSTS_REQUEST = 'app/Posts/FETCH_POSTS_REQUEST';
-export const FETCH_POSTS_SUCCESS = 'app/Posts/FETCH_POSTS_SUCCESS';
-export const FETCH_POSTS_ERROR = 'app/Posts/FETCH_POSTS_ERROR';
+export const FETCH_POSTS_REQUEST = 'app/posts/FETCH_POSTS_REQUEST';
+export const FETCH_POSTS_SUCCESS = 'app/posts/FETCH_POSTS_SUCCESS';
+export const FETCH_POSTS_ERROR = 'app/posts/FETCH_POSTS_ERROR';
 
 const initialState = {
     postRefs: [],
@@ -43,9 +42,9 @@ export default function reducer(state = initialState, action = {}) {
     }
 }
 
-export const fetchPosts = () => (dispatch, getState) => {
+export const fetchPosts = () => (dispatch, getState, axios) => {
     dispatch({ type: FETCH_POSTS_REQUEST });
-    return axios.get('https://jsonplaceholder.typicode.com/posts')
+    return axios.get('posts')
         .then(response => {
             const data = response.data;
             dispatch(addEntities(POST_ENTITY_TYPE, data));

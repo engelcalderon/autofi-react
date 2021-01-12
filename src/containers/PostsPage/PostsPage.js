@@ -3,6 +3,7 @@ import { array, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { fetchPosts } from '../../ducks/posts.duck';
+import { fetchComments } from '../../ducks/comments.duck';
 import { getEntities } from '../../ducks/entities.duck';
 import { PostCard } from '../../components';
 
@@ -11,8 +12,8 @@ import css from './PostsPage.module.css';
 export class PostsPageComponent extends React.Component {
 
     componentDidMount() {
-        const { onFetchPosts } = this.props;
-        onFetchPosts();
+        const { onFetchPosts, onFetchComments } = this.props;
+        onFetchPosts().then(() => onFetchComments());
     }
 
     render() {
@@ -71,6 +72,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     onFetchPosts: () => dispatch(fetchPosts()),
+    onFetchComments: () => dispatch(fetchComments()),
 })
 
 const PostsPage = compose(
