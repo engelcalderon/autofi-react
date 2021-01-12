@@ -3,6 +3,7 @@ import { array, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { fetchPosts } from '../../ducks/posts.duck';
+import { getEntities } from '../../ducks/entities.duck';
 
 import css from './PostsPage.module.css';
 
@@ -14,11 +15,22 @@ export class PostsPageComponent extends React.Component {
     }
 
     render() {
+        const {
+            posts,
+            fetchPostsInProgress,
+            fetchPostsError,
+        } = this.props;
+
+        if (fetchPostsInProgress) return <span>Loading...</span>
+
+        if (fetchPostsError) return <span>Error fetching posts</span>
 
         return (
             <div className={css.page}>
                 <div className={css.container}>
-                    
+                    {posts.map(post => (
+                        <p>{post.title}</p>
+                    ))}
                 </div>
             </div>
         )
@@ -44,8 +56,10 @@ const mapStateToProps = state => {
         fetchPostsError
     } = state.posts;
 
+    const posts = getEntities(state, postRefs);
+
     return {
-        postRefs,
+        posts,
         fetchPostsInProgress,
         fetchPostsError
     }

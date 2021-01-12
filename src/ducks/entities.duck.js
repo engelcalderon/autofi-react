@@ -20,6 +20,15 @@ export default function reducer(state = initialState, action = {}) {
     }
 };
 
+export const getEntities = (state, entityRefs) => {
+    const { entities } = state.entities;
+    return entityRefs.map(ref => {
+        const { type, id } = ref;
+        const groupEntities = entities[type];
+        return groupEntities[id]
+    });
+}
+
 export const addEntities = (type, data) => (dispatch, getState) => {
     dispatch({
         type: ADD_ENTITIES,
