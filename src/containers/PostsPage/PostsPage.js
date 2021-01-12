@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { fetchPosts } from '../../ducks/posts.duck';
 import { getEntities } from '../../ducks/entities.duck';
+import { PostCard } from '../../components';
 
 import css from './PostsPage.module.css';
 
@@ -29,7 +30,10 @@ export class PostsPageComponent extends React.Component {
             <div className={css.page}>
                 <div className={css.container}>
                     {posts.map(post => (
-                        <p>{post.title}</p>
+                        <PostCard
+                            key={post.id}
+                            post={post}
+                        />
                     ))}
                 </div>
             </div>

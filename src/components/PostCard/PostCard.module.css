@@ -1,0 +1,45 @@
+
+.root {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.postImage {
+    flex-basis: calc(20% - 12px);
+    margin-right: 12px;
+    height: 150px;
+    background-color: gray;
+}
+
+.body {
+    flex-basis: 80%;
+}
+
+.title {
+    margin: 0;
+    padding: 0 0 15px 0;
+}
+
+.commentsContainer {
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 20%;
+}
+
+.addCommentForm {
+    margin: 10px 0 15px 0;
+}
+
+.commentsLabel {
+    cursor: pointer;
+    color: #0000EE ;
+}
+
+.commentsLabel:hover {
+    text-decoration: underline;
+}

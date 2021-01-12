@@ -33,7 +33,7 @@ export const addEntities = (type, data) => (dispatch, getState) => {
     dispatch({
         type: ADD_ENTITIES,
         payload: {
-            [type]: { ...mapKeys(data, 'id') }
+            [type]: mapKeys(data, 'id')
         }
     });
 };
