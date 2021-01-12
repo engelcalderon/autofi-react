@@ -1,6 +1,8 @@
-import { addEntities } from './entities.duck';
+import { addEntities, addEntitiesRelationships } from './entities.duck';
+import { POST_ENTITY_TYPE } from './posts.duck';
 
 export const COMMENT_ENTITY_TYPE = 'comment';
+export const COMMENT_POST_ENTITY_REL_NAME = 'comments';
 
 export const FETCH_COMMENTS_REQUEST = 'app/comments/FETCH_COMMENTS_REQUEST';
 export const FETCH_COMMENTS_SUCCESS = 'app/comments/FETCH_COMMENTS_SUCCESS';
@@ -43,6 +45,7 @@ export const fetchComments = () => (dispatch, getState, axios) => {
         .then(response => {
             const data = response.data;
             dispatch(addEntities(COMMENT_ENTITY_TYPE, data));
+            dispatch(addEntitiesRelationships(POST_ENTITY_TYPE, 'postId', COMMENT_POST_ENTITY_REL_NAME, data));
             dispatch({ type: FETCH_COMMENTS_SUCCESS });
             return data;
         }).catch(err => dispatch({ type: FETCH_COMMENTS_ERROR, payload: { e: err } }))

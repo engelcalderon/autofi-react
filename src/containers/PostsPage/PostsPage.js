@@ -3,7 +3,7 @@ import { array, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { fetchPosts } from '../../ducks/posts.duck';
-import { fetchComments } from '../../ducks/comments.duck';
+import { fetchComments, COMMENT_ENTITY_TYPE } from '../../ducks/comments.duck';
 import { getEntities } from '../../ducks/entities.duck';
 import { PostCard } from '../../components';
 
@@ -63,8 +63,15 @@ const mapStateToProps = state => {
 
     const posts = getEntities(state, postRefs);
 
+    const commentEntityRefs = comments =>
+        comments.map(id => ({ type: COMMENT_ENTITY_TYPE, id }));
+    const postsWithComments = posts.map(p => ({
+        ...p,
+        comments: p.comments ? getEntities(state, commentEntityRefs(p.comments)) : []
+    }));
+
     return {
-        posts,
+        posts: postsWithComments,
         fetchPostsInProgress,
         fetchPostsError
     }

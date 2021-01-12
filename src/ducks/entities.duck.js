@@ -37,3 +37,31 @@ export const addEntities = (type, data) => (dispatch, getState) => {
         }
     });
 };
+
+export const addEntitiesRelationships = (relateToType, connectionId, relName, data) => (dispatch, getState) => {
+    const { entities } = getState().entities;
+    const byRelationshipTypeId = data.reduce((map, d) => {
+        return {
+            ...map,
+            [d[connectionId]]: {
+                ...map[d[connectionId]],
+                [d['id']]: d,
+            }
+        }
+    }, {})
+    const newEntities = Object.keys(entities[relateToType]).map(key => {
+        if (!byRelationshipTypeId[key]) return entities[relateToType][key];
+        return {
+            ...entities[relateToType][key],
+            [relName]: (entities[relateToType][key][relName] || []).concat(
+                Object.keys(byRelationshipTypeId[key]).map(k => byRelationshipTypeId[key][k].id)
+            )
+        }
+    });
+    dispatch({
+        type: ADD_ENTITIES,
+        payload: {
+            [relateToType]: { ...entities[relateToType], ...mapKeys(newEntities, 'id') }
+        }
+    });
+};
