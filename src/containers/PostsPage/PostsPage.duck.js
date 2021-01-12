@@ -8,9 +8,9 @@ export const FETCH_POSTS_REQUEST = 'app/PostsPage/FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'app/PostsPage/FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_ERROR = 'app/PostsPage/FETCH_POSTS_ERROR';
 
-export const FETCH_COMMENTS_REQUEST = 'app/comments/FETCH_COMMENTS_REQUEST';
-export const FETCH_COMMENTS_SUCCESS = 'app/comments/FETCH_COMMENTS_SUCCESS';
-export const FETCH_COMMENTS_ERROR = 'app/comments/FETCH_COMMENTS_ERROR';
+export const FETCH_COMMENTS_REQUEST = 'app/PostsPage/FETCH_COMMENTS_REQUEST';
+export const FETCH_COMMENTS_SUCCESS = 'app/PostsPage/FETCH_COMMENTS_SUCCESS';
+export const FETCH_COMMENTS_ERROR = 'app/PostsPage/FETCH_COMMENTS_ERROR';
 
 const initialState = {
     postRefs: [],
